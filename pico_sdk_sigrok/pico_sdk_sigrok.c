@@ -807,7 +807,14 @@ int main(){
 
    gpio_init_mask(GPIO_D_MASK); //set as GPIO_FUNC_SIO and clear output enable
    gpio_set_dir_masked(GPIO_D_MASK,0);  //Set all to input
+
+  // Define built-in led pin
+  const uint LED_PIN = PICO_DEFAULT_LED_PIN;
+  gpio_init(LED_PIN);
+  gpio_set_dir(LED_PIN, GPIO_OUT);
+
     while(1){
+      gpio_put(LED_PIN, 1); // turn led on for power indication
           __sev();//send event to wake core1
           if(send_resp){
             int mylen=strlen(dev.rspstr);
