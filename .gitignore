@@ -1,3 +1,17 @@
+### Unneccessary build files
+CMakeDoxyfile.in
+CMakeDoxygenDefaults.cmake
+elf2uf2/
+generated/
+pico-sdk/
+pico_sdk_import.cmake
+pico_sdk_sigrok.bin
+pico_sdk_sigrok.dis
+pico_sdk_sigrok.elf
+pico_sdk_sigrok.elf.map
+pico_sdk_sigrok.hex
+pioasm/
+
 ### CMake ###
 CMakeLists.txt.user
 CMakeCache.txt
