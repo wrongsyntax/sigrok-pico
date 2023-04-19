@@ -799,7 +799,7 @@ int main(){
    dev.d_mask=0xF;
    dev.d_nps=1; //digital nibbles per slice
    dev.sample_rate=1000;
-   dev.num_samples=5000;
+   dev.num_samples=5000;c
    dev.scnt=0; //number of samples sent
    ccnt=0;
 
@@ -808,21 +808,21 @@ int main(){
    gpio_init_mask(GPIO_D_MASK); //set as GPIO_FUNC_SIO and clear output enable
    gpio_set_dir_masked(GPIO_D_MASK,0);  //Set all to input
 
-  // Define built-in led pin
-  const uint LED_PIN = PICO_DEFAULT_LED_PIN;
-  gpio_init(LED_PIN);
-  gpio_set_dir(LED_PIN, GPIO_OUT);
+    // Define built-in led pin
+    const uint LED_PIN = PICO_DEFAULT_LED_PIN;
+    gpio_init(LED_PIN);
+    gpio_set_dir(LED_PIN, GPIO_OUT);
 
     while(1){
-      gpio_put(LED_PIN, 1); // turn led on for power indication
-          __sev();//send event to wake core1
-          if(send_resp){
+        gpio_put(LED_PIN, 1); // turn led on for power indication
+        __sev();//send event to wake core1
+        if(send_resp){
             int mylen=strlen(dev.rspstr);
             //Don't mix printf with direct to usb commands
-	    //printf("%s",dev.rspstr);
-	    my_stdio_usb_out_chars(dev.rspstr,mylen);
+	        //printf("%s",dev.rspstr);
+            my_stdio_usb_out_chars(dev.rspstr,mylen);
             send_resp=false;
-           }
+        }
          //Dprintf("ss %d %d",dev.sending,dev.started);
          if(dev.sending && (dev.started==false)) {
            //Only boost frequency during a sample so that average device power is less.
